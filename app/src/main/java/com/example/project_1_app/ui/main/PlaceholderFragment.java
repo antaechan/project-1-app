@@ -50,15 +50,28 @@ public class PlaceholderFragment extends Fragment {
             Bundle savedInstanceState) {
 
         binding = FragmentMainBinding.inflate(inflater, container, false);
-        View root = binding.getRoot();
+        View root = null;
+        switch (getArguments().getInt(ARG_SECTION_NUMBER)){
+            case 1:
+                //do something;
+                root = inflater.inflate(R.layout.fragment_main, container, false);
+                break;
+            case 2:
+                // something other
+                root = inflater.inflate(R.layout.fragment_second, container, false);
+                break;
+            case 3:
+                root = inflater.inflate(R.layout.fragment_third, container, false);
+                break;
+        }
 
-        final TextView textView = binding.sectionLabel;
-        pageViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
-            @Override
-            public void onChanged(@Nullable String s) {
-                textView.setText(s);
-            }
-        });
+//        final TextView textView = binding.sectionLabel;
+//        pageViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
+//            @Override
+//            public void onChanged(@Nullable String s) {
+//                textView.setText(s);
+//            }
+//        });
         return root;
     }
 
