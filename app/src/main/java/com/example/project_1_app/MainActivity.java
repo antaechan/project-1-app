@@ -1,5 +1,6 @@
 package com.example.project_1_app;
 
+import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
@@ -44,19 +45,28 @@ public class MainActivity extends AppCompatActivity {
         viewPager.setAdapter(sectionsPagerAdapter);
         TabLayout tabs = binding.tabs;
         tabs.setupWithViewPager(viewPager);
-/*        FloatingActionButton fab = binding.fab;
+        FloatingActionButton fab = binding.fab;
 
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });*/
+        fab.setOnClickListener(new ClickListener(this));
+
         tabListener = new TabListener(this);
         tabs.addOnTabSelectedListener(tabListener);
 
         mPhonebook = new ArrayList<PhoneBook>();
+    }
+
+    public class ClickListener implements View.OnClickListener {
+
+        private MainActivity activity;
+
+        public ClickListener(MainActivity main){
+            activity = main;
+        }
+        @Override
+        public void onClick(View view) {
+            Intent intent = new Intent(activity,AddPhoneActivity.class);
+            startActivity(intent);
+        }
     }
 
     public class TabListener implements TabLayout.OnTabSelectedListener{
@@ -77,18 +87,6 @@ public class MainActivity extends AppCompatActivity {
                     activity.mPhonebook.add(new PhoneBook(i+"번째 사람","000-0000-000"+i));
                 }
                 recyclerAdapter.setMyPhoneBook(activity.mPhonebook);
-/*                TextView nameView = (TextView) findViewById(R.id.result_name);
-                TextView phoneView = (TextView) findViewById(R.id.result_phone);
-
-                DBHelper helper = new DBHelper(activity);
-                SQLiteDatabase db = helper.getWritableDatabase();
-
-                Cursor cursor = db.rawQuery("select name, phone from tb_contact order by _id desc limit 1",null);
-                while(cursor.moveToNext()){
-                    nameView.setText(cursor.getString(0));
-                    phoneView.setText(cursor.getString(1));
-                }
-                db.close();*/
             }
         }
         @Override
