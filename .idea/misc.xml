@@ -3,13 +3,16 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-        <entry key="..\:/Camp/1-app/app/src/main/res/layout/activity_main.xml" value="0.264" />
+        <entry key="..\:/Camp/1-app/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.3515" />
+        <entry key="..\:/Camp/1-app/app/src/main/res/drawable/ic_launcher_background.xml" value="0.3515" />
+        <entry key="..\:/Camp/1-app/app/src/main/res/layout/activity_main.xml" value="0.2" />
         <entry key="..\:/Camp/1-app/app/src/main/res/layout/fragment_1.xml" value="0.38645833333333335" />
         <entry key="..\:/Camp/1-app/app/src/main/res/layout/fragment_2.xml" value="0.38645833333333335" />
         <entry key="..\:/Camp/1-app/app/src/main/res/layout/fragment_3.xml" value="0.38645833333333335" />
-        <entry key="..\:/Camp/1-app/app/src/main/res/layout/fragment_main.xml" value="0.152" />
+        <entry key="..\:/Camp/1-app/app/src/main/res/layout/fragment_main.xml" value="0.264" />
         <entry key="..\:/Camp/1-app/app/src/main/res/layout/fragment_second.xml" value="0.38645833333333335" />
         <entry key="..\:/Camp/1-app/app/src/main/res/layout/fragment_third.xml" value="0.38645833333333335" />
+        <entry key="..\:/Camp/1-app/app/src/main/res/layout/recycleview.xml" value="0.278125" />
         <entry key="..\:/Camp/1-app/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.3515" />
         <entry key="..\:/kaist/madcamp/project1-app/app/src/main/res/layout/activity_main.xml" value="0.16" />
         <entry key="..\:/kaist/madcamp/project1-app/app/src/main/res/layout/fragment_main.xml" value="0.22826086956521738" />

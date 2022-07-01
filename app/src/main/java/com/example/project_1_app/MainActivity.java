@@ -2,30 +2,32 @@ package com.example.project_1_app;
 
 import android.os.Bundle;
 
+import com.example.project_1_app.ui.main.PhoneBook;
+import com.example.project_1_app.ui.main.RecyclerAdapter;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.tabs.TabLayout;
 
-import androidx.viewpager.widget.ViewPager;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
-import android.view.Menu;
-import android.view.MenuItem;
+import androidx.viewpager.widget.ViewPager;
+
 import android.view.View;
-import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
 import com.example.project_1_app.ui.main.SectionsPagerAdapter;
 import com.example.project_1_app.databinding.ActivityMainBinding;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
     private ActivityMainBinding binding;
     private ListView list;
     private TabListener tabListener;
+    public ArrayList<PhoneBook> mPhonebook;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,6 +52,8 @@ public class MainActivity extends AppCompatActivity {
         });
         tabListener = new TabListener(this);
         tabs.addOnTabSelectedListener(tabListener);
+
+        mPhonebook = new ArrayList<PhoneBook>();
     }
 
     public class TabListener implements TabLayout.OnTabSelectedListener{
@@ -61,16 +65,29 @@ public class MainActivity extends AppCompatActivity {
         @Override
         public void onTabSelected(TabLayout.Tab tab) {
             if(tab.getPosition() == 0){
-                list = (ListView)findViewById(R.id.list);
+//                list = (ListView)findViewById(R.id.list);
+//
+//                List<String> data = new ArrayList<>();
+//
+//                ArrayAdapter<String> adapter = new ArrayAdapter<>(activity, android.R.layout.simple_list_item_1,data);
+//                list.setAdapter(adapter);
+//
+//                data.add("전이준");
+//                data.add("안태찬");
+//                adapter.notifyDataSetChanged(); // -> 저장완료
+                RecyclerView recyclerView = (RecyclerView) findViewById(R.id.recyclerView);
+                RecyclerAdapter recyclerAdapter = new RecyclerAdapter();
+                recyclerView.setAdapter(recyclerAdapter);
+                recyclerView.setLayoutManager(new LinearLayoutManager(activity));
 
-                List<String> data = new ArrayList<>();
+                for(int i=1;i<=10;i++){
+                    if(i%2==0)
+                        activity.mPhonebook.add(new PhoneBook(i+"번째 사람",i+"번째 상태메시지"));
+                    else
+                        activity.mPhonebook.add(new PhoneBook(i+"번째 사람",i+"번째 상태메시지"));
 
-                ArrayAdapter<String> adapter = new ArrayAdapter<>(activity, android.R.layout.simple_list_item_1,data);
-                list.setAdapter(adapter);
-
-                data.add("전이준");
-                data.add("안태찬");
-                adapter.notifyDataSetChanged(); // -> 저장완료
+                }
+                recyclerAdapter.setMyPhoneBook(activity.mPhonebook);
             }
         }
         @Override
