@@ -1,5 +1,7 @@
 package com.example.project_1_app;
 
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 
 import com.example.project_1_app.ui.main.PhoneBook;
@@ -15,6 +17,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager.widget.ViewPager;
 
 import android.view.View;
+import android.widget.TextView;
 
 import com.example.project_1_app.ui.main.SectionsPagerAdapter;
 import com.example.project_1_app.databinding.ActivityMainBinding;
@@ -41,7 +44,7 @@ public class MainActivity extends AppCompatActivity {
         viewPager.setAdapter(sectionsPagerAdapter);
         TabLayout tabs = binding.tabs;
         tabs.setupWithViewPager(viewPager);
-        FloatingActionButton fab = binding.fab;
+/*        FloatingActionButton fab = binding.fab;
 
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -49,7 +52,7 @@ public class MainActivity extends AppCompatActivity {
                 Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
             }
-        });
+        });*/
         tabListener = new TabListener(this);
         tabs.addOnTabSelectedListener(tabListener);
 
@@ -65,7 +68,7 @@ public class MainActivity extends AppCompatActivity {
         @Override
         public void onTabSelected(TabLayout.Tab tab) {
             if(tab.getPosition() == 0){
-                recyclerView = (RecyclerView) findViewById(R.id.recyclerView);
+                recyclerView = (RecyclerView)findViewById(R.id.recyclerView);
                 recyclerAdapter = new RecyclerAdapter();
                 recyclerView.setAdapter(recyclerAdapter);
                 recyclerView.setLayoutManager(new LinearLayoutManager(activity));
@@ -74,6 +77,18 @@ public class MainActivity extends AppCompatActivity {
                     activity.mPhonebook.add(new PhoneBook(i+"번째 사람","000-0000-000"+i));
                 }
                 recyclerAdapter.setMyPhoneBook(activity.mPhonebook);
+/*                TextView nameView = (TextView) findViewById(R.id.result_name);
+                TextView phoneView = (TextView) findViewById(R.id.result_phone);
+
+                DBHelper helper = new DBHelper(activity);
+                SQLiteDatabase db = helper.getWritableDatabase();
+
+                Cursor cursor = db.rawQuery("select name, phone from tb_contact order by _id desc limit 1",null);
+                while(cursor.moveToNext()){
+                    nameView.setText(cursor.getString(0));
+                    phoneView.setText(cursor.getString(1));
+                }
+                db.close();*/
             }
         }
         @Override
