@@ -12,13 +12,20 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
 
 import com.example.project_1_app.ui.main.SectionsPagerAdapter;
 import com.example.project_1_app.databinding.ActivityMainBinding;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class MainActivity extends AppCompatActivity {
 
     private ActivityMainBinding binding;
+    private ListView list;
+    private TabListener tabListener;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,18 +48,34 @@ public class MainActivity extends AppCompatActivity {
                         .setAction("Action", null).show();
             }
         });
+        tabListener = new TabListener(this);
+        tabs.addOnTabSelectedListener(tabListener);
+    }
 
-        /*        if(tabs.getSelectedTabPosition() == 0){
-            list = (ListView)findViewById(R.id.list);
+    public class TabListener implements TabLayout.OnTabSelectedListener{
+        private MainActivity activity;
 
-            List<String> data = new ArrayList<>();
+        public TabListener(MainActivity main){
+            activity = main;
+        }
+        @Override
+        public void onTabSelected(TabLayout.Tab tab) {
+            if(tab.getPosition() == 0){
+                list = (ListView)findViewById(R.id.list);
 
-            ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1,data);
-            list.setAdapter(adapter);
+                List<String> data = new ArrayList<>();
 
-            data.add("전이준");
-            data.add("안태찬");
-            adapter.notifyDataSetChanged(); // -> 저장완료
-        }*/
+                ArrayAdapter<String> adapter = new ArrayAdapter<>(activity, android.R.layout.simple_list_item_1,data);
+                list.setAdapter(adapter);
+
+                data.add("전이준");
+                data.add("안태찬");
+                adapter.notifyDataSetChanged(); // -> 저장완료
+            }
+        }
+        @Override
+        public void onTabUnselected(TabLayout.Tab tab) {}
+        @Override
+        public void onTabReselected(TabLayout.Tab tab) {}
     }
 }
