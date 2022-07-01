@@ -15,7 +15,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager.widget.ViewPager;
 
 import android.view.View;
-import android.widget.ListView;
 
 import com.example.project_1_app.ui.main.SectionsPagerAdapter;
 import com.example.project_1_app.databinding.ActivityMainBinding;
@@ -25,8 +24,9 @@ import java.util.ArrayList;
 public class MainActivity extends AppCompatActivity {
 
     private ActivityMainBinding binding;
-    private ListView list;
     private TabListener tabListener;
+    private RecyclerView recyclerView;
+    private RecyclerAdapter recyclerAdapter;
     public ArrayList<PhoneBook> mPhonebook;
 
     @Override
@@ -65,27 +65,13 @@ public class MainActivity extends AppCompatActivity {
         @Override
         public void onTabSelected(TabLayout.Tab tab) {
             if(tab.getPosition() == 0){
-//                list = (ListView)findViewById(R.id.list);
-//
-//                List<String> data = new ArrayList<>();
-//
-//                ArrayAdapter<String> adapter = new ArrayAdapter<>(activity, android.R.layout.simple_list_item_1,data);
-//                list.setAdapter(adapter);
-//
-//                data.add("전이준");
-//                data.add("안태찬");
-//                adapter.notifyDataSetChanged(); // -> 저장완료
-                RecyclerView recyclerView = (RecyclerView) findViewById(R.id.recyclerView);
-                RecyclerAdapter recyclerAdapter = new RecyclerAdapter();
+                recyclerView = (RecyclerView) findViewById(R.id.recyclerView);
+                recyclerAdapter = new RecyclerAdapter();
                 recyclerView.setAdapter(recyclerAdapter);
                 recyclerView.setLayoutManager(new LinearLayoutManager(activity));
 
                 for(int i=1;i<=10;i++){
-                    if(i%2==0)
-                        activity.mPhonebook.add(new PhoneBook(i+"번째 사람",i+"번째 상태메시지"));
-                    else
-                        activity.mPhonebook.add(new PhoneBook(i+"번째 사람",i+"번째 상태메시지"));
-
+                    activity.mPhonebook.add(new PhoneBook(i+"번째 사람","000-0000-000"+i));
                 }
                 recyclerAdapter.setMyPhoneBook(activity.mPhonebook);
             }
