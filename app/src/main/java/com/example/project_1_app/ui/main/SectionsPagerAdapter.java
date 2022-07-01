@@ -9,6 +9,9 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
 
 import com.example.project_1_app.R;
+import com.example.project_1_app.TabMain;
+import com.example.project_1_app.TabSecond;
+import com.example.project_1_app.TabThird;
 
 /**
  * A [FragmentPagerAdapter] that returns a fragment corresponding to
@@ -27,9 +30,19 @@ public class SectionsPagerAdapter extends FragmentPagerAdapter {
 
     @Override
     public Fragment getItem(int position) {
-        // getItem is called to instantiate the fragment for the given page.
-        // Return a PlaceholderFragment (defined as a static inner class below).
-        return PlaceholderFragment.newInstance(position + 1);
+        switch (position){
+            case 0:
+                TabMain tab1 = new TabMain();
+                return tab1;
+            case 1:
+                TabSecond tab2 = new TabSecond();
+                return tab2;
+            case 2:
+                TabThird tab3 = new TabThird();
+                return tab3;
+            default:
+                return null;
+        }
     }
 
     @Nullable

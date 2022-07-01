@@ -41,5 +41,18 @@ public class MainActivity extends AppCompatActivity {
                         .setAction("Action", null).show();
             }
         });
+
+        /*        if(tabs.getSelectedTabPosition() == 0){
+            list = (ListView)findViewById(R.id.list);
+
+            List<String> data = new ArrayList<>();
+
+            ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1,data);
+            list.setAdapter(adapter);
+
+            data.add("전이준");
+            data.add("안태찬");
+            adapter.notifyDataSetChanged(); // -> 저장완료
+        }*/
     }
 }
